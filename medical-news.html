@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical News - MIMS US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Add welcome alert container here -->
+    <div id="welcome-alert" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:2000;">
+      <div id="welcome-message" style="margin:auto;max-width:600px;background:#2563eb;color:#fff;padding:18px 32px 18px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);font-size:1.15rem;display:flex;align-items:center;justify-content:space-between;">
+        <span id="welcome-text"></span>
+        <button id="close-welcome" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:18px;"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Trusted Medical Information Since 2023</div>
+                <div class="top-bar-links">
+                    <a href="#">For Healthcare Professionals</a>
+                    <a href="#">Patient Resources</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">MIMS ph</div>
+                    <div class="logo-subtitle">Medical Information Management System</div>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Search drugs, diseases, interactions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions" aria-hidden="true"></div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                    <a href="drugdb.html" class="nav-link">Drug Database <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="drugdb.html">By Brand Name</a>
+                        <a href="drugdb.html">By Generic Name</a>
+                        <a href="drugdb.html">By Therapeutic Class</a>
+                        <a href="drugdb.html">A-Z Medicines (PH)</a>
+                    </div>
+                </li>
+                <li><a href="diseasedb.html" class="nav-link">Disease Database</a></li>
+                <li><a href="drugdb.html#interactions" class="nav-link">Drug Interactions</a></li>
+                <li><a href="medical-news.html" class="nav-link active">Medical News</a></li>
+                <li><a href="clinical-tools.html" class="nav-link">Clinical Tools</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+<section id="news-page" class="page-section active">
+  <div class="container main-content">
+    <h2 class="section-title">Medical News & Updates</h2>
+    <p class="section-subtitle">Stay informed with the latest developments in healthcare, research, and clinical practice.</p>
+    
+    <div class="news-grid">
+
+      <!-- News Card 1 -->
+      <div class="news-card">
+        <div class="news-img" style="background-image: url('assets/newspicture/doh1.jpg');">
+          <div class="news-date">21 May 2025</div>
+        </div>
+        <div class="news-content">
+          <h3>WHO, DOH and KOICA bring essential health services closer to mothers, newborns and adolescents</h3>
+          <p>The World Health Organization (WHO), DOH and the Korea International Cooperation Agency (KOICA) concluded Phase 2 of their Subnational Initiative (SNI) to strengthen provider networks and community linkages for reproductive, maternal, neonatal, child and adolescent health. </p>
+          <a href="news/who-doh­rmacadolescents-2025.html" target="_blank" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Card 2 -->
+      <div class="news-card">
+        <div class="news-img" style="background-image: url('assets/newspicture/doh5.jpg');">
+          <div class="news-date">Feb 2025</div>
+        </div>
+        <div class="news-content">
+          <h3>DOH reaches immunization equity milestone among children</h3>
+          <p>As of February 2025, DOH reached 1,542,282 fully immunized children aged 0-12 months, advancing its goal toward immunization equity. :contentReference[oaicite:4]{index=4}</p>
+          <a href="news/doh-immunization-equity-2025.html" target="_blank" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Card 3 -->
+      <div class="news-card">
+        <div class="news-img" style="background-image: url('assets/newspicture/doh5.jpg');">
+          <div class="news-date">2 months ago</div>
+        </div>
+        <div class="news-content">
+          <h3>DOH engages Visayas media to spread accurate health information</h3>
+          <p>Recognizing the critical role of the media, DOH held a regional conference in Visayas to strengthen health-communication systems and raise public awareness on current health issues. :contentReference[oaicite:5]{index=5}</p>
+          <a href="news/doh-visayas-media-2025.html" target="_blank" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Card 4 -->
+      <div class="news-card">
+        <div class="news-img" style="background-image: url('assets/newspicture/doh5.jpg');">
+          <div class="news-date">6 June 2025</div>
+        </div>
+        <div class="news-content">
+          <h3>UNAIDS & WHO support DOH’s call for urgent action on HIV surge</h3>
+          <p>The UNAIDS and WHO have joined DOH in calling for urgent action as the Philippines faces the fastest-growing HIV surge in the Asia-Pacific region. :contentReference[oaicite:6]{index=6}</p>
+          <a href="news/hiv-surge-philippines-2025.html" target="_blank" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Card 5 -->
+      <div class="news-card">
+        <div class="news-img" style="background-image: url('assets/newspicture/doh5.jpg');">
+          <div class="news-date">July 2025</div>
+        </div>
+        <div class="news-content">
+          <h3>DOH’s “Bakuna Eskwela” campaign promotes health and well-being of learners</h3>
+          <p>The campaign encourages free vaccinations in schools and health centres for children, emphasising protection against serious diseases, reduced absenteeism and lower family medical costs.</p>
+          <a href="news/bakuna-eskwela-2025.html" target="_blank" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- News Card 6 -->
+      <div class="news-card">
+        <div class="news-img" style="background-image: url('assets/newspicture/doh6.jpeg');">
+            <div class="news-date">October 21, 2025</div>
+        </div>
+        <div class="news-content">
+          <h3>DOH: Influenza-like illness cases 25% lower in past two weeks</h3>
+          <p>According to DOH surveillance, influenza-like illness (ILI) cases dropped by about 25 % nationwide over the past fortnight. </p>
+          <a href="news/ili-cases-drop-2025.html" target="_blank" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="drugdb.html"><i class="fas fa-pills"></i> Drug Database</a></li>
+                        <li><a href="diseasedb.html"><i class="fas fa-stethoscope"></i> Disease Database</a></li>
+                        <li><a href="druginteractions.html"><i class="fas fa-exchange-alt"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="medical-news.html"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About MIMS</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Editorial Policy</a></li>
+                        <li><a href="#"><i class="fas fa-bullhorn"></i> Advertise With Us</a></li>
+                        <li><a href="contact.html" target="_blank"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank"><i class="fas fa-file-contract"></i> Terms of Use</a></li>
+                        <li><a href="cookie-policy.html" target="_blank"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" target="_blank"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                        <li><a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MIMS ph. All rights reserved. This information is intended for healthcare professionals only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals for Legal Info -->
+    <div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.7);z-index:9999;">
+        <div id="modal-content" style="background:white;max-width:600px;margin:60px auto;padding:40px 30px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
+            <button id="modal-close" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+            <h2 id="modal-title" style="margin-bottom:18px;"></h2>
+            <div id="modal-body" style="color:var(--gray);font-size:1rem;line-height:1.7;"></div>
+        </div>
+    </div>
+
+    <script src="main.js" defer></script>
+</body>
+</html>

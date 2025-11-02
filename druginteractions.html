@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Interactions - MIMS ph</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <!-- Add welcome alert container here -->
+    <div id="welcome-alert" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:2000;">
+      <div id="welcome-message" style="margin:auto;max-width:600px;background:#2563eb;color:#fff;padding:18px 32px 18px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);font-size:1.15rem;display:flex;align-items:center;justify-content:space-between;">
+        <span id="welcome-text"></span>
+        <button id="close-welcome" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:18px;"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Trusted Medical Information Since 2023</div>
+                <div class="top-bar-links">
+                    <a href="#">For Healthcare Professionals</a>
+                    <a href="#">Patient Resources</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">MIMS ph</div>
+                    <div class="logo-subtitle">Medical Information Management System</div>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Search drugs, diseases, interactions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <!-- Suggestion dropdown will be injected by JS -->
+                </div>
+                
+                <div class="user-actions" aria-hidden="true"></div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                    <a href="drugdb.html" class="nav-link">Drug Database <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="drugdb.html">By Brand Name</a>
+                        <a href="drugdb.html">By Generic Name</a>
+                        <a href="drugdb.html">By Therapeutic Class</a>
+                        <a href="drugdb.html">A-Z Medicines (PH)</a>
+                    </div>
+                </li>
+                <li><a href="diseasedb.html" class="nav-link">Disease Database</a></li>
+                <li><a href="druginteractions.html" class="nav-link active">Drug Interactions</a></li>
+                <li><a href="medical-news.html" class="nav-link">Medical News</a></li>
+                <li><a href="clinical-tools.html" class="nav-link">Clinical Tools</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+ 
+    <section id="interactions-page" class="page-section active">
+        <div class="container main-content">
+            <h2 class="section-title">Drug Interactions Checker</h2>
+            <p class="section-subtitle">Quickly check known interactions between commonly used medicines. This tool provides illustrative information — always consult full references and clinical judgment.</p>
+            
+            <div class="medicine-section" style="padding:30px;">
+                <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin-bottom:20px;">
+                    <div style="flex:1;min-width:220px;">
+                        <label for="drug1-select" style="display:block;font-weight:600;margin-bottom:8px;">Drug 1</label>
+                        <select id="drug1-select" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--gray-light);">
+                            <option value="">Select medication...</option>
+                            <option value="warfarin">Warfarin</option>
+                            <option value="aspirin">Aspirin</option>
+                            <option value="clopidogrel">Clopidogrel</option>
+                            <option value="simvastatin">Simvastatin</option>
+                            <option value="omeprazole">Omeprazole</option>
+                            <option value="fluoxetine">Fluoxetine</option>
+                            <option value="amiodarone">Amiodarone</option>
+                            <option value="metformin">Metformin</option>
+                            <option value="furosemide">Furosemide</option>
+                        </select>
+                    </div>
+                    <div style="flex:1;min-width:220px;">
+                        <label for="drug2-select" style="display:block;font-weight:600;margin-bottom:8px;">Drug 2</label>
+                        <select id="drug2-select" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--gray-light);">
+                            <option value="">Select medication...</option>
+                            <option value="warfarin">Warfarin</option>
+                            <option value="aspirin">Aspirin</option>
+                            <option value="clopidogrel">Clopidogrel</option>
+                            <option value="simvastatin">Simvastatin</option>
+                            <option value="omeprazole">Omeprazole</option>
+                            <option value="fluoxetine">Fluoxetine</option>
+                            <option value="amiodarone">Amiodarone</option>
+                            <option value="metformin">Metformin</option>
+                            <option value="furosemide">Furosemide</option>
+                        </select>
+                    </div>
+                    <div style="align-self:end;">
+                        <button id="check-interaction-btn" class="btn btn-primary" style="padding:10px 18px;">Check Interaction <i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <div id="interaction-result" style="display:none;" class="medicine-card">
+                </div>
+
+                <h3 style="margin-top:28px;font-size:1.2rem;color:var(--dark);">Example Known Interactions</h3>
+                <p style="color:var(--gray);margin-bottom:12px;">Common illustrative examples included in this demo dataset.</p>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:var(--light);">
+                                <th style="text-align:left;padding:12px;border-bottom:1px solid var(--gray-light);">Drug Combination</th>
+                                <th style="text-align:left;padding:12px;border-bottom:1px solid var(--gray-light);">Interaction</th>
+                                <th style="text-align:left;padding:12px;border-bottom:1px solid var(--gray-light);">Severity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Warfarin + Aspirin</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Increased risk of bleeding</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--danger);">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Simvastatin + Amiodarone</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Increased risk of myopathy</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--danger);">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Clopidogrel + Omeprazole</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Reduced antiplatelet effect</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--warning);">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Fluoxetine + Aspirin</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Increased bleeding risk</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--warning);">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Metformin + Furosemide</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">May decrease metformin effectiveness</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--success);">Minor</span></td>
+                            </tr>
+                            <!-- Additional examples -->
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">ACE Inhibitor + Potassium-sparing Diuretic</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Risk of hyperkalemia</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--danger);">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Warfarin + Amiodarone</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Increased warfarin effect, bleeding risk</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--danger);">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Digoxin + Verapamil</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Increased digoxin levels, toxicity risk</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--warning);">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Macrolide Antibiotic + Statin</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Increased risk of statin myopathy</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--danger);">Major</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">NSAID + Antihypertensive</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Reduced antihypertensive effect</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--warning);">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">SSRIs + Triptans</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Risk of serotonin syndrome</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--warning);">Moderate</span></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Levothyroxine + Calcium Supplements</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);">Reduced levothyroxine absorption</td>
+                                <td style="padding:12px;border-bottom:1px solid var(--gray-light);"><span style="color:var(--success);">Minor</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="drugdb.html"><i class="fas fa-pills"></i> Drug Database</a></li>
+                        <li><a href="diseasedb.html"><i class="fas fa-stethoscope"></i> Disease Database</a></li>
+                        <li><a href="druginteractions.html"><i class="fas fa-exchange-alt"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="medical-news.html"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About MIMS PH</h3>
+                    <p style="color:#cbd5e1;font-size:0.95rem;line-height:1.45;">
+                        MIMS PH empowers clinicians and the public with organized, reliable medical content — from drug monographs and interactions to clinical calculators. Our goal is accessible, practical medical information for better patient care.
+                    </p>
+                    <a href="about.html" style="display:inline-block;margin-top:12px;color:#cbd5e1;text-decoration:none;"><i class="fas fa-info-circle"></i> Learn more</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank"><i class="fas fa-file-contract"></i> Terms of Use</a></li>
+                        <li><a href="cookie-policy.html" target="_blank"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" target="_blank"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MIMS ph. All rights reserved. This information is intended for healthcare professionals only. | Built by Ara S. De Ocampo</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals for Legal Info -->
+    <div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.7);z-index:9999;">
+        <div id="modal-content" style="background:white;max-width:600px;margin:60px auto;padding:40px 30px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
+            <button id="modal-close" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+            <h2 id="modal-title" style="margin-bottom:18px;"></h2>
+            <div id="modal-body" style="color:var(--gray);font-size:1rem;line-height:1.7;"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>

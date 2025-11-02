@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Database - MIMS US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Add welcome alert container here -->
+    <div id="welcome-alert" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:2000;">
+      <div id="welcome-message" style="margin:auto;max-width:600px;background:#2563eb;color:#fff;padding:18px 32px 18px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);font-size:1.15rem;display:flex;align-items:center;justify-content:space-between;">
+        <span id="welcome-text"></span>
+        <button id="close-welcome" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:18px;"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Trusted Medical Information Since 2023</div>
+                <div class="top-bar-links">
+                    <a href="#">For Healthcare Professionals</a>
+                    <a href="#">Patient Resources</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">MIMS ph</div>
+                    <div class="logo-subtitle">Medical Information Management System</div>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Search drugs, diseases, interactions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <!-- Suggestion dropdown will be injected by JS -->
+                </div>
+                
+                <div class="user-actions" aria-hidden="true"></div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                    <a href="drugdb.html" class="nav-link">Drug Database <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="drugdb.html">By Brand Name</a>
+                        <a href="drugdb.html">By Generic Name</a>
+                        <a href="drugdb.html">By Therapeutic Class</a>
+                        <a href="drugdb.html">A-Z Medicines (PH)</a>
+                    </div>
+                </li>
+                <li><a href="diseasedb.html" class="nav-link active">Disease Database</a></li>
+                <li><a href="druginteractions.html" class="nav-link">Drug Interactions</a></li>
+                <li><a href="medical-news.html" class="nav-link">Medical News</a></li>
+                <li><a href="clinical-tools.html" class="nav-link">Clinical Tools</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Disease Database Page -->
+    <section id="diseases-page" class="page-section active">
+        <div class="container main-content">
+            <h2 class="section-title">Disease Database</h2>
+            <p class="section-subtitle">Comprehensive information on diseases, conditions, and treatment protocols.
+                (Double click on a disease name to view more details.)
+            </p>
+            
+            <div class="disease-categories">
+                <div class="disease-category">
+                    <h3><i class="fas fa-heartbeat"></i> Cardiovascular Diseases</h3>
+                    <ul class="disease-list">
+                        <li><a href="#" class="disease-info" data-disease="hypertension"><i class="fas fa-arrow-right"></i> Hypertension</a></li>
+                        <li><a href="#" class="disease-info" data-disease="coronary-artery-disease"><i class="fas fa-arrow-right"></i> Coronary Artery Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="heart-failure"><i class="fas fa-arrow-right"></i> Heart Failure</a></li>
+                        <li><a href="#" class="disease-info" data-disease="arrhythmias"><i class="fas fa-arrow-right"></i> Arrhythmias</a></li>
+                        <li><a href="#" class="disease-info" data-disease="stroke"><i class="fas fa-arrow-right"></i> Stroke</a></li>
+                        <li><a href="#" class="disease-info" data-disease="peripheral-artery-disease"><i class="fas fa-arrow-right"></i> Peripheral Artery Disease</a></li>
+                    </ul>
+                </div>
+                <div class="disease-category">
+                    <h3><i class="fas fa-lungs"></i> Respiratory Conditions</h3>
+                    <ul class="disease-list">
+                        <li><a href="#" class="disease-info" data-disease="asthma"><i class="fas fa-arrow-right"></i> Asthma</a></li>
+                        <li><a href="#" class="disease-info" data-disease="copd"><i class="fas fa-arrow-right"></i> Chronic Obstructive Pulmonary Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="pneumonia"><i class="fas fa-arrow-right"></i> Pneumonia</a></li>
+                        <li><a href="#" class="disease-info" data-disease="tuberculosis"><i class="fas fa-arrow-right"></i> Tuberculosis</a></li>
+                        <li><a href="#" class="disease-info" data-disease="influenza"><i class="fas fa-arrow-right"></i> Influenza</a></li>
+                        <li><a href="#" class="disease-info" data-disease="covid-19"><i class="fas fa-arrow-right"></i> COVID-19</a></li>
+                    </ul>
+                </div>
+                <div class="disease-category">
+                    <h3><i class="fas fa-brain"></i> Neurological Disorders</h3>
+                    <ul class="disease-list">
+                        <li><a href="#" class="disease-info" data-disease="alzheimers"><i class="fas fa-arrow-right"></i> Alzheimer's Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="parkinsons"><i class="fas fa-arrow-right"></i> Parkinson's Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="epilepsy"><i class="fas fa-arrow-right"></i> Epilepsy</a></li>
+                        <li><a href="#" class="disease-info" data-disease="multiple-sclerosis"><i class="fas fa-arrow-right"></i> Multiple Sclerosis</a></li>
+                        <li><a href="#" class="disease-info" data-disease="migraine"><i class="fas fa-arrow-right"></i> Migraine</a></li>
+                        <li><a href="#" class="disease-info" data-disease="neuropathy"><i class="fas fa-arrow-right"></i> Neuropathy</a></li>
+                    </ul>
+                </div>
+                <div class="disease-category">
+                    <h3><i class="fas fa-dna"></i> Endocrine & Metabolic</h3>
+                    <ul class="disease-list">
+                        <li><a href="#" class="disease-info" data-disease="diabetes"><i class="fas fa-arrow-right"></i> Diabetes Mellitus</a></li>
+                        <li><a href="#" class="disease-info" data-disease="thyroid-disorders"><i class="fas fa-arrow-right"></i> Thyroid Disorders</a></li>
+                        <li><a href="#" class="disease-info" data-disease="osteoporosis"><i class="fas fa-arrow-right"></i> Osteoporosis</a></li>
+                        <li><a href="#" class="disease-info" data-disease="metabolic-syndrome"><i class="fas fa-arrow-right"></i> Metabolic Syndrome</a></li>
+                        <li><a href="#" class="disease-info" data-disease="obesity"><i class="fas fa-arrow-right"></i> Obesity</a></li>
+                        <li><a href="#" class="disease-info" data-disease="gout"><i class="fas fa-arrow-right"></i> Gout</a></li>
+                    </ul>
+                </div>
+                <div class="disease-category">
+                    <h3><i class="fas fa-allergies"></i> Infectious Diseases</h3>
+                    <ul class="disease-list">
+                        <li><a href="#" class="disease-info" data-disease="hiv"><i class="fas fa-arrow-right"></i> HIV/AIDS</a></li>
+                        <li><a href="#" class="disease-info" data-disease="hepatitis"><i class="fas fa-arrow-right"></i> Hepatitis</a></li>
+                        <li><a href="#" class="disease-info" data-disease="dengue"><i class="fas fa-arrow-right"></i> Dengue Fever</a></li>
+                        <li><a href="#" class="disease-info" data-disease="malaria"><i class="fas fa-arrow-right"></i> Malaria</a></li>
+                        <li><a href="#" class="disease-info" data-disease="typhoid"><i class="fas fa-arrow-right"></i> Typhoid Fever</a></li>
+                        <li><a href="#" class="disease-info" data-disease="leptospirosis"><i class="fas fa-arrow-right"></i> Leptospirosis</a></li>
+                    </ul>
+                </div>
+                <div class="disease-category">
+                    <h3><i class="fas fa-stomach"></i> Gastrointestinal Disorders</h3>
+                    <ul class="disease-list">
+                        <li><a href="#" class="disease-info" data-disease="gerd"><i class="fas fa-arrow-right"></i> Gastroesophageal Reflux Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="peptic-ulcer"><i class="fas fa-arrow-right"></i> Peptic Ulcer Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="ibd"><i class="fas fa-arrow-right"></i> Inflammatory Bowel Disease</a></li>
+                        <li><a href="#" class="disease-info" data-disease="ibs"><i class="fas fa-arrow-right"></i> Irritable Bowel Syndrome</a></li>
+                        <li><a href="#" class="disease-info" data-disease="hepatitis-gi"><i class="fas fa-arrow-right"></i> Hepatitis</a></li>
+                        <li><a href="#" class="disease-info" data-disease="pancreatitis"><i class="fas fa-arrow-right"></i> Pancreatitis</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="drugdb.html"><i class="fas fa-pills"></i> Drug Database</a></li>
+                        <li><a href="diseasedb.html"><i class="fas fa-stethoscope"></i> Disease Database</a></li>
+                        <li><a href="drugdb.html#interactions"><i class="fas fa-exchange-alt"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="medical-news.html"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About MIMS PH</h3>
+                    <p style="color:#cbd5e1;font-size:0.95rem;line-height:1.45;">
+                        MIMS PH (Medical Information Management System Philippines) provides up-to-date, reliable medical information — drug references, clinical tools, and healthcare resources — to support informed decision-making. Built to serve healthcare professionals and the wider public.
+                    </p>
+                    <a href="about.html" style="display:inline-block;margin-top:12px;color:#cbd5e1;text-decoration:none;"><i class="fas fa-info-circle"></i> Learn more</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank"><i class="fas fa-file-contract"></i> Terms of Use</a></li>
+                        <li><a href="cookie-policy.html" target="_blank"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" target="_blank"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MIMS ph. All rights reserved. This information is intended for healthcare professionals only. | Built by Ara S. De Ocampo</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals for Legal Info -->
+    <div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.7);z-index:9999;">
+        <div id="modal-content" style="background:white;max-width:600px;margin:60px auto;padding:40px 30px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
+            <button id="modal-close" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+            <h2 id="modal-title" style="margin-bottom:18px;"></h2>
+            <div id="modal-body" style="color:var(--gray);font-size:1rem;line-height:1.7;"></div>
+        </div>
+    </div>
+
+    <!-- Disease Info Popup -->
+    <div id="disease-popup" style="display:none;position:absolute;z-index:99999;min-width:260px;max-width:340px;background:white;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.18);padding:22px 18px 18px 18px;transition:opacity 0.18s;opacity:0;">
+        <button id="disease-popup-close" style="position:absolute;top:8px;right:10px;background:none;border:none;font-size:1.1rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+        <h4 id="disease-popup-title" style="margin-bottom:8px;font-size:1.08rem;"></h4>
+        <div id="disease-popup-body" style="color:var(--gray);font-size:0.98rem;line-height:1.6;"></div>
+    </div>
+
+    <!-- load external JS (all inline JS moved to main.js) -->
+    <script src="main.js"></script>
+
+   <style>
+   .disease-suggestion-item:hover { background: #e0e7ff; }
+   .disease-info.highlight { background: #fef9c3 !important; transition: background 0.4s; }
+   /* ADDED: popup visibility/animation */
+   #disease-popup.show { display:block; opacity:1; transform:translateY(0); }
+   #disease-popup { transition:opacity 0.18s, transform 0.18s; transform:translateY(-6px); }
+
+    
+   .disease-info:hover {
+     background: transparent !important;
+     color: inherit !important;
+     text-decoration: none !important;
+   }
+   .disease-list li:hover { background: transparent !important; }
+   </style>
+
+
+
+</body>
+</html>

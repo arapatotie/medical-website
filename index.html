@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIMS US - Medical Information & Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Add welcome alert container here -->
+    <div id="welcome-alert" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:2000;">
+      <div id="welcome-message" style="margin:auto;max-width:600px;background:#2563eb;color:#fff;padding:18px 32px 18px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);font-size:1.15rem;display:flex;align-items:center;justify-content:space-between;">
+        <span id="welcome-text"></span>
+        <button id="close-welcome" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:18px;"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Trusted Medical Information Since 2025</div>
+                <div class="top-bar-links">
+                    <a href="#">For Healthcare Professionals</a>
+                    <a href="#">Patient Resources</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">MIMS ph</div>
+                    <div class="logo-subtitle">Medical Information Management System</div>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Search drugs, diseases, interactions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions" aria-hidden="true"></div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link" data-page="home">Home</a></li>
+                <li>
+                    <a href="drugdb.html" class="nav-link" data-external="true">Drug Database <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="drugdb.html" data-external="true">By Brand Name</a>
+                        <a href="drugdb.html" data-external="true">By Generic Name</a>
+                        <a href="drugdb.html" data-external="true">By Therapeutic Class</a>
+                        <a href="drugdb.html" data-external="true">A-Z Medicines (PH)</a>
+                    </div>
+                </li>
+                <li><a href="diseasedb.html" class="nav-link" data-external="true">Disease Database</a></li>
+                <li><a href="druginteractions.html" class="nav-link" data-external="true">Drug Interactions</a></li>
+                <li><a href="medical-news.html" class="nav-link" data-external="true">Medical News</a></li>
+                <li><a href="clinical-tools.html" data-external="true">Clinical Tools</a></li> <!-- full page navigation -->
+                <li><a href="about.html" data-external="true">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home-page" class="page-section active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>Trusted Medical Information for Healthcare Professionals</h1>
+                <p>Access comprehensive drug information, clinical resources, and the latest medical news to support your practice in the Philippines and beyond.</p>
+                <a href="drugdb.html" class="btn btn-primary" data-external="true">Explore A-Z Medicine Database <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content container">
+            <!-- Features Section -->
+            <section class="features">
+                <div class="feature-card">
+                    <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031d4ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="feature-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Comprehensive Drug Database</h3>
+                        <p>Access detailed information on thousands of prescription and OTC medications available in the Philippines, including dosages, side effects, and interactions.</p>
+                        <a href="drugdb.html" class="feature-link" data-external="true">Explore Database <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="feature-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Disease Information</h3>
+                        <p>Find comprehensive guides on diseases, conditions, and treatment protocols to support clinical decision-making for Filipino patients.</p>
+                        <a href="diseasedb.html" class="feature-link" data-external="true">Browse Diseases <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img" style="background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Clinical Calculators</h3>
+                        <p>Use our suite of clinical calculators for dosing, conversions, and medical formulas to support patient care in various specialties.</p>
+                        <a href="clinical-tools.html" class="feature-link nav-link" data-page="tools">Access Tools <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest News Section -->
+            <section class="news-section">
+                <h2 class="section-title">Latest Medical News</h2>
+                <p class="section-subtitle">Stay updated with the latest developments in healthcare and medicine.</p>
+                
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                            <div class="news-date">June 15, 2023</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>New Guidelines for Hypertension Management Released</h3>
+                            <p>The American College of Cardiology has updated its guidelines for managing hypertension in adult patients, with new recommendations for treatment thresholds and medication choices.</p>
+                            <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1579154204601-015dbf4c8c13?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                            <div class="news-date">June 12, 2023</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>FDA Approves New Diabetes Medication</h3>
+                            <p>The FDA has approved a novel GLP-1 receptor agonist for the treatment of type 2 diabetes, showing significant improvement in blood sugar control and cardiovascular outcomes.</p>
+                            <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                            <div class="news-date">June 8, 2023</div>
+                        </div>
+                        <div class="news-content">
+                            <h3>Study Shows Benefits of New Cancer Immunotherapy</h3>
+                            <p>Recent clinical trial results demonstrate significant improvement in survival rates for patients with advanced melanoma treated with a new immunotherapy combination approach.</p>
+                            <a href="#" class="news-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </section>
+
+
+
+    <!-- Modals for Legal Info -->
+<div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.7);z-index:9999;">
+    <div id="modal-content" style="background:white;max-width:600px;margin:60px auto;padding:40px 30px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
+        <button id="modal-close" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+        <h2 id="modal-title" style="margin-bottom:18px;"></h2>
+        <div id="modal-body" style="color:var(--gray);font-size:1rem;line-height:1.7;"></div>
+    </div>
+</div>
+
+    <!-- Tool modal (for calculators) -->
+    <div id="tool-modal" class="tool-modal" aria-hidden="true" role="dialog" aria-modal="true">
+	<div class="tool-modal-content" role="document">
+		<div class="tool-modal-header">
+			<div>
+				<h3 id="tool-title" style="margin:0;font-size:1.05rem;"></h3>
+				<div id="tool-subtitle" style="font-size:0.85rem;opacity:0.9;"></div>
+			</div>
+			<button id="tool-close" style="background:none;border:none;color:white;font-size:1.3rem;cursor:pointer;"><i class="fas fa-times"></i></button>
+		</div>
+		<div class="tool-modal-body" id="tool-body">
+			<!-- dynamic content injected here -->
+		</div>
+	</div>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="drugdb.html" data-external="true"><i class="fas fa-pills"></i> Drug Database</a></li>
+                        <li><a href="diseasedb.html" data-external="true"><i class="fas fa-stethoscope"></i> Disease Database</a></li>
+                        <li><a href="druginteractions.html" data-external="true"><i class="fas fa-exchange-alt"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html" data-external="true"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="medical-news.html" data-external="true"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About MIMS</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html" data-external="true"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Editorial Policy</a></li>
+                        <li><a href="#"><i class="fas fa-bullhorn"></i> Advertise With Us</a></li>
+                        <li><a href="contact.html" target="_blank"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank"><i class="fas fa-file-contract"></i> Terms of Use</a></li>
+                        <li><a href="cookie-policy.html" target="_blank"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" target="_blank"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                        <li><a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MIMS ph. All rights reserved. This information is intended for healthcare professionals only.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js" defer></script>
+</body>
+</html>

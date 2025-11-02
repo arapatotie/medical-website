@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.3/paper-full.min.js"></script>
+    <title>MIMS ph - Your trusted medical Information provider</title>
+    <style>
+      @charset "UTF-8";
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        width: 100% !important;
+        box-sizing: border-box;
+        font-family: "Roboto", sans-serif;
+        background: linear-gradient(135deg, #e3f0fc 0%, #b3d8f7 100%);
+      }
+
+      .backRight {
+        position: absolute;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        /* medical/healthcare artwork */
+        background: linear-gradient(120deg, #b3d8f7 0%, #e3f0fc 100%);
+        /* Optionally add a subtle SVG medical icon as background-image */
+        /* background-image: url('data:image/svg+xml;utf8,<svg ...>'); */
+        opacity: 0.7;
+      }
+
+      .backLeft {
+        position: absolute;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        /* complementary medical/clinical artwork */
+        background: linear-gradient(120deg, #1081eb 0%, #b3d8f7 100%);
+        opacity: 0.7;
+      }
+
+      #back {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -999;
+      }
+
+      .canvas-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+      }
+
+      #slideBox {
+        width: 50%;
+        max-height: 100%;
+        height: 100%;
+        overflow: hidden;
+        margin-left: 50%;
+        position: absolute;
+        box-shadow: 0 14px 28px rgba(44,98,180,0.18), 0 10px 10px rgba(44,98,180,0.12);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.95);
+      }
+
+      .topLayer {
+        width: 200%;
+        height: 100%;
+        position: relative;
+        left: 0;
+        left: -100%;
+      }
+
+      label {
+        font-size: 0.8em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      input {
+        background-color: transparent;
+        border: 0;
+        outline: 0;
+        font-size: 1em;
+        padding: 8px 1px;
+        margin-top: 0.1em;
+        transition: all 0.3s ease;
+      }
+
+      .left {
+        width: 50%;
+        height: 100%;
+        overflow: scroll;
+        background: rgba(44, 98, 180, 0.12);
+        left: 0;
+        position: absolute;
+        backdrop-filter: blur(6px);
+        border-top-left-radius: 18px;
+        border-bottom-left-radius: 18px;
+      }
+      .left label {
+        color: #2266a3;
+      }
+      .left input {
+        border-bottom: 1.5px solid #2266a3;
+        color: #2266a3;
+      }
+      .left input:focus, .left input:active {
+        border-color: #3a8dde;
+        color: #3a8dde;
+      }
+      .left input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px rgba(44, 98, 180, 0.09) inset;
+        -webkit-text-fill-color: #2266a3;
+      }
+      .left a {
+        color: #3a8dde;
+        transition: color 0.3s ease;
+      }
+      .left a:hover {
+        color: #2266a3;
+      }
+
+      .right {
+        width: 50%;
+        height: 100%;
+        overflow: scroll;
+        background: rgba(255,255,255,0.85);
+        right: 0;
+        position: absolute;
+        backdrop-filter: blur(6px);
+        border-top-right-radius: 18px;
+        border-bottom-right-radius: 18px;
+      }
+      .right label {
+        color: #2266a3;
+      }
+      .right input {
+        border-bottom: 1.5px solid #2266a3;
+        color: #2266a3;
+      }
+      .right input:focus, .right input:active {
+        border-color: #3a8dde;
+        color: #3a8dde;
+      }
+      .right input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px rgba(255,255,255,0.9) inset;
+        -webkit-text-fill-color: #2266a3;
+      }
+      .right a {
+        color: #3a8dde;
+        transition: color 0.3s ease;
+      }
+      .right a:hover {
+        color: #2266a3;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100%;
+        width: 80%;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .logo h1 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+        font-size: 2.8em;
+        margin: 0 0 10px;
+        color: #2266a3;
+        letter-spacing: 2px;
+        text-shadow: 1px 1px 3px rgba(44,98,180,0.15);
+      }
+
+      .logo p {
+        font-size: 0.9em;
+        color: #3a8dde;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .content h2 {
+        font-weight: 400;
+        font-size: 2.2em;
+        margin: 0.2em 0 0.1em;
+        color: #2266a3;
+        font-family: 'Playfair Display', serif;
+      }
+
+      .left .content h2 {
+        color: #2266a3;
+      }
+
+      .right .content h2 {
+        color: #2266a3;
+      }
+
+      .form-element {
+        margin: 1.6em 0;
+      }
+      .form-element.form-submit {
+        margin: 1.6em 0 0;
+      }
+
+      .form-stack {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .checkbox {
+        -webkit-appearance: none;
+        appearance: none;
+        outline: none;
+        background-color: #e3f0fc;
+        border: 1.5px solid #b3d8f7;
+        box-shadow: 0 1px 2px rgba(44,98,180,0.05), inset 0px -15px 10px -12px rgba(44,98,180,0.05);
+        padding: 12px;
+        border-radius: 4px;
+        display: inline-block;
+        position: relative;
+        transition: all 0.3s ease;
+      }
+
+      .checkbox:focus, .checkbox:checked:focus,
+      .checkbox:active, .checkbox:checked:active {
+        border-color: #2266a3;
+        box-shadow: 0 1px 2px rgba(44,98,180,0.08), inset 0px 1px 3px rgba(44,98,180,0.12);
+      }
+
+      .checkbox:checked {
+        outline: none;
+        box-shadow: 0 1px 2px rgba(44,98,180,0.08), inset 0px -15px 10px -12px rgba(44,98,180,0.08), inset 15px 10px -12px rgba(255,255,255,0.1);
+      }
+
+      .checkbox:checked:after {
+        outline: none;
+        content: "✓";
+        color: #2266a3;
+        font-size: 1.4em;
+        font-weight: 900;
+        position: absolute;
+        top: -4px;
+        left: 4px;
+      }
+
+      .form-checkbox {
+        display: flex;
+        align-items: center;
+      }
+      .form-checkbox label {
+        margin: 0 6px 0;
+        font-size: 0.72em;
+        color: #2266a3;
+      }
+
+      button {
+        padding: 0.8em 1.2em;
+        margin: 0 10px 0 0;
+        width: auto;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 1em;
+        color: #fff;
+        line-height: 1em;
+        letter-spacing: 0.6px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(44,98,180,0.08), 0 3px 6px rgba(44,98,180,0.08);
+        border: 0;
+        outline: 0;
+        transition: all 0.25s;
+        cursor: pointer;
+      }
+      button.signup {
+        background: linear-gradient(90deg, #2266a3 0%, #3a8dde 100%);
+      }
+      button.login {
+        background: linear-gradient(90deg, #3a8dde 0%, #2266a3 100%);
+      }
+      button.off {
+        background: none;
+        box-shadow: none;
+        margin: 0;
+      }
+      button.off.signup {
+        color: #2266a3;
+      }
+      button.off.login {
+        color: #3a8dde;
+      }
+
+      button:focus, button:active, button:hover {
+        box-shadow: 0 4px 7px rgba(44,98,180,0.12), 0 3px 6px rgba(44,98,180,0.12);
+        transform: translateY(-2px);
+      }
+      button:focus.signup, button:active.signup, button:hover.signup {
+        background: #2266a3;
+      }
+      button:focus.login, button:active.login, button:hover.login {
+        background: #3a8dde;
+      }
+      button:focus.off, button:active.off, button:hover.off {
+        box-shadow: none;
+        transform: translateY(0);
+      }
+      button:focus.off.signup, button:active.off.signup, button:hover.off.signup {
+        color: #2266a3;
+        background: #e3f0fc;
+      }
+      button:focus.off.login, button:active.off.login, button:hover.off.login {
+        color: #3a8dde;
+        background: #e3f0fc;
+      }
+
+      @media only screen and (max-width: 768px) {
+        #slideBox {
+          width: 80%;
+          margin-left: 20%;
+        }
+
+        .signup-info, .login-info {
+          display: none;
+        }
+        
+        .logo h1 {
+          font-size: 2em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="back">
+      <canvas id="canvas" class="canvas-back"></canvas>
+      <div class="backRight">    
+      </div>
+      <div class="backLeft">
+      </div>
+    </div>
+    <div id="slideBox">
+      <div class="topLayer">
+        <div style="scrollbar-width: none;" class="left">
+          <div class="content">
+            <div class="logo">
+              <h1>MIMS ph</h1>
+              <p>Your trusted medical Information provider ph</p>
+            </div>
+            <h2>Create Account</h2>
+            <form id="form-signup" method="post" onsubmit="return false;">
+              <div class="form-element form-stack">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" name="email" required>
+              </div>
+              <div class="form-element form-stack">
+                <label for="username-signup" class="form-label">Username</label>
+                <input id="username-signup" type="text" name="username" required>
+              </div>
+              <div class="form-element form-stack">
+                <label for="password-signup" class="form-label">Password</label>
+                <input id="password-signup" type="password" name="password" required>
+              </div>
+              <div class="form-element form-stack">
+                <label for="phone-signup" class="form-label">Phone Number</label>
+                <input id="phone-signup" type="tel" name="phone">
+              </div>
+              <div class="form-element form-checkbox">
+                <input id="confirm-terms" type="checkbox" name="confirm" value="yes" class="checkbox" required>
+                <label for="confirm-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+              </div>
+              <div class="form-element form-submit">
+                <button id="signUp" class="signup" type="submit" name="signup">Create Account</button>
+                <button id="goLeft" type="button" class="signup off">Already a Member?</button> 
+              </div>
+            </form>
+          </div>
+        </div>
+        <div style="scrollbar-width: none;" class="right">
+          <div class="content">
+            <div class="logo">
+              <h1>MIMS ph</h1>
+              <p>Your trusted medical Information provider ph</p>
+            </div>
+            <h2>Welcome Back</h2>
+            <form id="form-login" method="post" onsubmit="return false;">
+              <div class="form-element form-stack">
+                <label for="username-login" class="form-label">Username or Email</label>
+                <input id="username-login" type="text" name="username" required>
+              </div>
+              <div class="form-element form-stack">
+                <label for="password-login" class="form-label">Password</label>
+                <input id="password-login" type="password" name="password" required>
+              </div>
+              <div class="form-element form-checkbox">
+                <input id="remember-me" type="checkbox" name="remember" value="yes" class="checkbox">
+                <label for="remember-me">Remember me</label>
+              </div>
+              <div class="form-element form-submit">
+                <button id="logIn" class="login" type="submit" name="login">Log In</button>
+                <button id="goRight" type="button" class="login off" name="signup">New User?</button>
+              </div>
+              <div style="text-align: center; margin-top: 20px;">
+                <a href="#" style="color: #2c7a7b; font-size: 0.8em;">Forgot your password?</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+
+      $(document).ready(function(){
+        $('#goRight').on('click', function(e){
+          e.preventDefault();
+           $('#slideBox').animate({
+             'marginLeft' : '0'
+           });
+           $('.topLayer').animate({
+             'marginLeft' : '100%'
+           });
+         });
+        $('#goLeft').on('click', function(e){
+          e.preventDefault();
+           if (window.innerWidth > 769){
+             $('#slideBox').animate({
+               'marginLeft' : '50%'
+             });
+           }
+           else {
+             $('#slideBox').animate({
+               'marginLeft' : '20%'
+             });
+           }
+           $('.topLayer').animate({
+             'marginLeft': '0'
+           });
+         });
+       });
+
+      // Global error logger to surface script errors in the console quickly
+      window.addEventListener('error', function (evt) {
+        console.error('Global error caught:', evt.message, 'at', evt.filename + ':' + evt.lineno + ':' + evt.colno);
+      });
+
+      paper.install(window);
+      paper.setup(document.getElementById("canvas"));
+
+      var canvasWidth, 
+          canvasHeight,
+          canvasMiddleX,
+          canvasMiddleY;
+
+      var shapeGroup = new Group();
+
+      var positionArray = [];
+
+      function getCanvasBounds() {
+        // Get current canvas size
+        canvasWidth = view.size.width;
+        canvasHeight = view.size.height;
+        canvasMiddleX = canvasWidth / 2;
+        canvasMiddleY = canvasHeight / 2;
+        // Set path position
+        var position1 = {
+          x: (canvasMiddleX / 2) + 100,
+          y: 100, 
+        };
+
+        var position2 = {
+          x: 200,
+          y: canvasMiddleY, 
+        };
+
+        var position3 = {
+          x: (canvasMiddleX - 50) + (canvasMiddleX / 2),
+          y: 150, 
+        };
+
+        var position4 = {
+          x: 0,
+          y: canvasMiddleY + 100, 
+        };
+
+        var position5 = {
+          x: canvasWidth - 130,
+          y: canvasHeight - 75, 
+        };
+
+        var position6 = {
+          x: canvasMiddleX + 80,
+          y: canvasHeight - 50, 
+        };
+        
+        var position7 = {
+          x: canvasWidth + 60,
+          y: canvasMiddleY - 50, 
+        };
+        
+        var position8 = {
+          x: canvasMiddleX + 100,
+          y: canvasMiddleY + 100, 
+        };
+
+        positionArray = [position3, position2, position5, position4, position1, position6, position7, position8];
+        };
+
+
+      function initializeShapes() {
+       
+        getCanvasBounds();
+
+        var shapePathData = [
+          'M231,352l445-156L600,0L452,54L331,3L0,48L231,352', 
+          'M0,0l64,219L29,343l535,30L478,37l-133,4L0,0z', 
+          'M0,65l16,138l96,107l270-2L470,0L337,4L0,65z',
+          'M333,0L0,94l64,219L29,437l570-151l-196-42L333,0',
+          'M331.9,3.6l-331,45l231,304l445-156l-76-196l-148,54L331.9,3.6z',
+          'M389,352l92-113l195-43l0,0l0,0L445,48l-80,1L122.7,0L0,275.2L162,297L389,352',
+          'M 50 100 L 300 150 L 550 50 L 750 300 L 500 250 L 300 450 L 50 100',
+          'M 700 350 L 500 350 L 700 500 L 400 400 L 200 450 L 250 350 L 100 300 L 150 50 L 350 100 L 250 150 L 450 150 L 400 50 L 550 150 L 350 250 L 650 150 L 650 50 L 700 150 L 600 250 L 750 250 L 650 300 L 700 350 '
+        ];
+
+        // Use < to avoid iterating one past the array end and guard undefined entries
+        for (var i = 0; i < shapePathData.length; i++) {
+          if (!shapePathData[i]) continue;
+          // Create shape
+          var headerShape = new Path({
+            strokeColor: 'rgba(74, 158, 135, 0.4)',
+            strokeWidth: 2,
+            parent: shapeGroup,
+          });
+          // Set path data and position only when available
+          try {
+            headerShape.pathData = shapePathData[i];
+            headerShape.scale(2);
+            if (positionArray[i]) headerShape.position = positionArray[i];
+          } catch (err) {
+            console.warn('Skipped shape at index', i, 'due to error:', err);
+            headerShape.remove();
+          }
+        }
+      };
+
+      initializeShapes();
+
+     
+      view.onFrame = function paperOnFrame(event) {
+        if (event.count % 4 === 0) {
+          // Slows down frame rate
+          for (var i = 0; i < shapeGroup.children.length; i++) {
+            if (i % 2 === 0) {
+              shapeGroup.children[i].rotate(-0.1);
+            } else {
+              shapeGroup.children[i].rotate(0.1);
+            }
+          }
+        }
+      };
+
+      view.onResize = function paperOnResize() {
+        getCanvasBounds();
+
+        for (var i = 0; i < shapeGroup.children.length; i++) {
+          shapeGroup.children[i].position = positionArray[i];
+        }
+
+        if (canvasWidth < 700) {
+          shapeGroup.children[3].opacity = 0;
+          shapeGroup.children[2].opacity = 0;
+          shapeGroup.children[5].opacity = 0;
+        } else {
+          shapeGroup.children[3].opacity = 1;
+          shapeGroup.children[2].opacity = 1;
+          shapeGroup.children[5].opacity = 1;
+        }
+      };
+    </script>
+    <script>
+      // Add this before the existing scripts
+      document.getElementById('form-login').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const username = document.getElementById('username-login').value;
+        const password = document.getElementById('password-login').value;
+        
+        if (username && password) {
+          // Redirect to HOME.html with welcome=login
+          window.location.href = 'index.html?welcome=login';
+        } else {
+          alert('Please fill in all fields');
+        }
+      });
+
+      document.getElementById('form-signup').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const username = document.getElementById('username-signup').value;
+        const password = document.getElementById('password-signup').value;
+        const phone = document.getElementById('phone-signup').value;
+        const terms = document.getElementById('confirm-terms').checked;
+        
+        if (email && username && password && terms) {
+          // Redirect to HOME.html with welcome=signup
+          window.location.href = 'index.html?welcome=signup';
+        } else {
+          alert('Please fill in all required fields and accept the terms');
+        }
+      });
+    </script>
+  </body>
+</html>

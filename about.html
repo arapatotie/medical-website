@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - MIMS US</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Add welcome alert container here -->
+    <div id="welcome-alert" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:2000;">
+      <div id="welcome-message" style="margin:auto;max-width:600px;background:#2563eb;color:#fff;padding:18px 32px 18px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);font-size:1.15rem;display:flex;align-items:center;justify-content:space-between;">
+        <span id="welcome-text"></span>
+        <button id="close-welcome" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:18px;"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Trusted Medical Information Since 2023</div>
+                <div class="top-bar-links">
+                    <a href="#">For Healthcare Professionals</a>
+                    <a href="#">Patient Resources</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">MIMS ph</div>
+                    <div class="logo-subtitle">Medical Information Management System</div>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Search drugs, diseases, interactions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions" aria-hidden="true"></div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                    <a href="drugdb.html" class="nav-link">Drug Database <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="drugdb.html">By Brand Name</a>
+                        <a href="drugdb.html">By Generic Name</a>
+                        <a href="drugdb.html">By Therapeutic Class</a>
+                        <a href="drugdb.html">A-Z Medicines (PH)</a>
+                    </div>
+                </li>
+                <li><a href="diseasedb.html" class="nav-link">Disease Database</a></li>
+                <li><a href="druginteractions.html" class="nav-link">Drug Interactions</a></li>
+                <li><a href="medical-news.html" class="nav-link">Medical News</a></li>
+                <li><a href="clinical-tools.html" class="nav-link">Clinical Tools</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- About Page -->
+    <section id="about-page" class="page-section active">
+        <div class="container main-content">
+            <h2 class="section-title">About MIMS ph</h2>
+            <p class="section-subtitle">Trusted medical information for healthcare professionals since 1959.</p>
+            
+            <div class="about-content">
+                <!-- Personal profile: replace src, alt, name and description as needed -->
+                <div class="personal-profile" style="display:flex;
+                gap:20px;
+                align-items:center;
+                background:#fff;
+                border:1px solid var(--gray-light);
+                padding:18px;
+                border-radius:12px;
+                margin-bottom:18px;
+                box-shadow:var(--card-shadow);
+                max-width:1000px;">
+                <div> 
+                    <h3><i class="fas fa-bullseye"></i> About Me</h3>
+                    <img src="assets/PROFILE.jpg" alt="profile" style="width:120px;height:120px;object-fit:cover;border-radius:12px;border:1px solid var(--gray-light);" />
+                    <div style="flex:1;">
+                        <div style="font-size:1.2rem;font-weight:700;color:var(--dark);margin-bottom:6px;">Ara S. De Ocampo</div>
+                        <div style="color:var(--gray);font-size:0.98rem;line-height:1.5;">
+                            My name is Ara S. De Ocampo, a passionate developer dedicated to building innovative digital solutions for the healthcare community. I believe that technology plays a vital role in improving access to accurate and reliable medical information. My mission is to make complex medical data simple, organized, and accessible to everyone — from healthcare professionals to everyday users seeking trusted health insights. Through continuous learning and development, I aim to contribute to a more informed, connected, and health-conscious society.
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="about-section">
+                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                    <p>MIMS ph provides accurate, up-to-date, and comprehensive drug information and clinical resources to support healthcare professionals in making informed decisions for their patients. We are committed to advancing healthcare through reliable medical information.</p>
+                    <p>Our platform serves as a bridge between medical research and clinical practice, ensuring that healthcare providers have access to the latest evidence-based information when they need it most.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h3><i class="fas fa-history"></i> Our History</h3>
+                    <p><strong> 2024</strong> — This MIMS PH edition is focused exclusively on the Philippines. In 2024 we updated the local platform to align content with Philippine clinical practice, formularies, and regulatory guidance. The Philippine edition consolidates global MIMS expertise with 
+                        locally relevant information to better support Filipino healthcare professionals.</p>
+                </div>
+                
+                <div class="about-section">
+                    <h3><i class="fas fa-users"></i> Our Team</h3>
+                    <p>Our team consists of experienced medical editors, pharmacists, physicians, and healthcare IT specialists dedicated to maintaining the highest standards of medical information. We collaborate with leading medical experts and institutions to ensure our content reflects current best practices.</p>
+                    
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h4>Dr. Sarah Johnson</h4>
+                            <p>Chief Medical Editor</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h4>Dr. Michael Chen</h4>
+                            <p>Clinical Pharmacology Director</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h4>Dr. Maria Rodriguez</h4>
+                            <p>Medical Affairs Director</p>
+                        </div>
+                        
+                        <div class="team-member">
+                            <div class="member-photo">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h4>Robert Williams, RPh</h4>
+                            <p>Pharmacy Content Lead</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-section">
+                    <h3><i class="fas fa-book"></i> Editorial Policy</h3>
+                    <p>All content is developed and reviewed by our team of medical editors, pharmacists, and physicians. We adhere to strict editorial standards to ensure the accuracy and relevance of our information. Our content development process includes:</p>
+                    <ul class="effects-list">
+                        <li><i class="fas fa-check common"></i> Regular updates based on latest clinical evidence</li>
+                        <li><i class="fas fa-check common"></i> Peer review by subject matter experts</li>
+                        <li><i class="fas fa-check common"></i> Compliance with FDA and international guidelines</li>
+                        <li><i class="fas fa-check common"></i> Transparency in source attribution</li>
+                        <li><i class="fas fa-check common"></i> Regular audit of content accuracy</li>
+                    </ul>
+                </div>
+                
+                <div class="about-section">
+                    <h3><i class="fas fa-handshake"></i> Partnerships</h3>
+                    <p>MIMS ph collaborates with leading medical societies, academic institutions, and healthcare organizations to ensure our content meets the highest standards. Our partners include the American Medical Association, American Pharmacists Association, and various specialty societies across different medical disciplines.</p>
+                    <p>We also work closely with pharmaceutical manufacturers to provide accurate and up-to-date drug information, while maintaining strict editorial independence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="drugdb.html"><i class="fas fa-pills"></i> Drug Database</a></li>
+                        <li><a href="diseasedb.html"><i class="fas fa-stethoscope"></i> Disease Database</a></li>
+                        <li><a href="drugdb.html#interactions"><i class="fas fa-exchange-alt"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="medical-news.html"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About MIMS</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Editorial Policy</a></li>
+                        <li><a href="#"><i class="fas fa-bullhorn"></i> Advertise With Us</a></li>
+                        <li><a href="contact.html" target="_blank"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank"><i class="fas fa-file-contract"></i> Terms of Use</a></li>
+                        <li><a href="cookie-policy.html" target="_blank"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" target="_blank"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                        <li><a href="https://www.facebook.com/YourPageName" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MIMS ph. All rights reserved. This information is intended for healthcare professionals only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals for Legal Info -->
+    <div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.7);z-index:9999;">
+        <div id="modal-content" style="background:white;max-width:600px;margin:60px auto;padding:40px 30px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
+            <button id="modal-close" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+            <h2 id="modal-title" style="margin-bottom:18px;"></h2>
+            <div id="modal-body" style="color:var(--gray);font-size:1rem;line-height:1.7;"></div>
+        </div>
+    </div>
+
+    <script src="main.js" defer></script>
+</body>
+</html>

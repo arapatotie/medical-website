@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Database - MIMS PH</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /* Ensure the medicine section is always visible */
+      #medicines-page { display: block !important; }
+      .medicine-type {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-top: 4px;
+}
+    </style>
+</head>
+<body>
+    <!-- Add welcome alert container here -->
+    <div id="welcome-alert" style="display:none;position:fixed;top:0;left:0;width:100%;z-index:2000;">
+      <div id="welcome-message" style="margin:auto;max-width:600px;background:#2563eb;color:#fff;padding:18px 32px 18px 32px;border-radius:0 0 16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);font-size:1.15rem;display:flex;align-items:center;justify-content:space-between;">
+        <span id="welcome-text"></span>
+        <button id="close-welcome" style="background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;margin-left:18px;"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="top-bar">
+            <div class="container top-bar-content">
+                <div>Trusted Medical Information Since 2023</div>
+                <div class="top-bar-links">
+                    <a href="#">For Healthcare Professionals</a>
+                    <a href="#">Patient Resources</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="header-main">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div class="logo-text">MIMS ph</div>
+                    <div class="logo-subtitle">Medical Information Management System</div>
+                </div>
+                <div class="search-bar">
+                    <input id="search-input" type="text" placeholder="Search drugs, diseases, interactions...">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                    <!-- Suggestion dropdown will be injected by JS -->
+                </div>
+                
+                <div class="user-actions" aria-hidden="true"></div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li>
+                    <a href="drugdb.html" class="nav-link active">Drug Database <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown">
+                        <a href="#" data-view="brand" class="db-filter">By Brand Name</a>
+                        <a href="#" data-view="generic" class="db-filter">By Generic Name</a>
+                    </div>
+                </li>
+                <li><a href="diseasedb.html" class="nav-link">Disease Database</a></li>
+                <li><a href="druginteractions.html" class="nav-link">Drug Interactions</a></li>
+                <li><a href="medical-news.html" class="nav-link">Medical News</a></li>
+                <li><a href="clinical-tools.html" class="nav-link">Clinical Tools</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->    <!-- A-Z Medicines Page -->
+    <section id="medicines-page" class="page-section active">
+        <div class="container main-content">
+            <div class="medicine-section">
+                <h2 class="section-title"> Medicine Database (Philippines)</h2>
+                <p class="section-subtitle">Browse our comprehensive list of medicines available in the Philippines with detailed information on uses and side effects.</p>
+                
+                <!-- Visible controls to choose view -->
+                <div class="db-controls" style="margin-bottom:18px;">
+                    <span style="font-weight:600;margin-right:10px;">View:</span>
+                    <a href="#" class="db-filter" data-view="brand" style="color:var(--primary);font-weight:600;margin-right:12px;text-decoration:none;">By Brand Name</a>
+                    <a href="#" class="db-filter" data-view="generic" style="color:var(--primary);font-weight:600;text-decoration:none;">By Generic Name</a>
+                </div>
+                
+                <div class="alphabet-filter">
+                    <div class="alphabet-btn active" data-letter="all">All</div>
+                    <div class="alphabet-btn" data-letter="A">A</div>
+                    <div class="alphabet-btn" data-letter="B">B</div>
+                    <div class="alphabet-btn" data-letter="C">C</div>
+                    <div class="alphabet-btn" data-letter="D">D</div>
+                    <div class="alphabet-btn" data-letter="E">E</div>
+                    <div class="alphabet-btn" data-letter="F">F</div>
+                    <div class="alphabet-btn" data-letter="G">G</div>
+                    <div class="alphabet-btn" data-letter="H">H</div>
+                    <div class="alphabet-btn" data-letter="I">I</div>
+                    <div class="alphabet-btn" data-letter="J">J</div>
+                    <div class="alphabet-btn" data-letter="K">K</div>
+                    <div class="alphabet-btn" data-letter="L">L</div>
+                    <div class="alphabet-btn" data-letter="M">M</div>
+                    <div class="alphabet-btn" data-letter="N">N</div>
+                    <div class="alphabet-btn" data-letter="O">O</div>
+                    <div class="alphabet-btn" data-letter="P">P</div>
+                    <div class="alphabet-btn" data-letter="Q">Q</div>
+                    <div class="alphabet-btn" data-letter="R">R</div>
+                    <div class="alphabet-btn" data-letter="S">S</div>
+                    <div class="alphabet-btn" data-letter="T">T</div>
+                    <div class="alphabet-btn" data-letter="U">U</div>
+                    <div class="alphabet-btn" data-letter="V">V</div>
+                    <div class="alphabet-btn" data-letter="W">W</div>
+                    <div class="alphabet-btn" data-letter="X">X</div>
+                    <div class="alphabet-btn" data-letter="Y">Y</div>
+                    <div class="alphabet-btn" data-letter="Z">Z</div>
+                </div>
+                
+                <div class="medicine-list">
+                   
+
+
+                    
+                    
+
+                   
+                    <div class="medicine-card" data-letter="B">
+                        <div class="medicine-header">
+                            <h3 class="medicine-name">Bioflu</h3>
+                            <div class="medicine-generic">Paracetamol, Phenylephrine, Chlorphenamine</div>
+                            <div class="medicine-type">Contains Paracetamol</div>
+                        </div>
+                        <div class="medicine-content">
+                            <p class="medicine-desc">A popular over-the-counter medication in the Philippines for relief of cold and flu symptoms including fever, headache, nasal congestion, and runny nose.</p>
+                            <div class="medicine-effects">
+                                <div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+                                <ul class="effects-list">
+                                    <li><i class="fas fa-circle common"></i> Drowsiness</li>
+                                    <li><i class="fas fa-circle common"></i> Dry mouth</li>
+                                    <li><i class="fas fa-circle common"></i> Dizziness</li>
+                                    <li><i class="fas fa-circle serious"></i> Allergic reactions</li>
+                                    <li><i class="fas fa-circle serious"></i> Difficulty urinating</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medicine Card 3 -->
+                    <div class="medicine-card" data-letter="C">
+                        <div class="medicine-header">
+                            <h3 class="medicine-name">Candesartan</h3>
+                            <div class="medicine-generic">Candesartan cilexetil</div>
+                        </div>
+                        <div class="medicine-content">
+                            <p class="medicine-desc">An angiotensin II receptor blocker (ARB) used to treat high blood pressure (hypertension) and heart failure.</p>
+                            <div class="medicine-effects">
+                                <div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+                                <ul class="effects-list">
+                                    <li><i class="fas fa-circle common"></i> Dizziness, lightheadedness</li>
+                                    <li><i class="fas fa-circle common"></i> Upper respiratory infection</li>
+                                    <li><i class="fas fa-circle common"></i> Back pain</li>
+                                    <li><i class="fas fa-circle serious"></i> Kidney problems</li>
+                                    <li><i class="fas fa-circle serious"></i> High potassium levels</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medicine Card 4 -->
+                    <div class="medicine-card" data-letter="M">
+                        <div class="medicine-header">
+                            <h3 class="medicine-name">Metformin</h3>
+                            <div class="medicine-generic">Metformin hydrochloride</div>
+                        </div>
+                        <div class="medicine-content">
+                            <p class="medicine-desc">An oral diabetes medicine used together with diet and exercise to improve blood sugar control in patients with type 2 diabetes.</p>
+                            <div class="medicine-effects">
+                                <div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+                                <ul class="effects-list">
+                                    <li><i class="fas fa-circle common"></i> Nausea, vomiting, diarrhea</li>
+                                    <li><i class="fas fa-circle common"></i> Gas, stomach pain</li>
+                                    <li><i class="fas fa-circle common"></i> Headache</li>
+                                    <li><i class="fas fa-circle serious"></i> Lactic acidosis (rare)</li>
+                                    <li><i class="fas fa-circle serious"></i> Vitamin B12 deficiency</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medicine Card 5 -->
+                    <div class="medicine-card" data-letter="L">
+                        <div class="medicine-header">
+                            <h3 class="medicine-name">Losartan</h3>
+                            <div class="medicine-generic">Losartan potassium</div>
+                        </div>
+                        <div class="medicine-content">
+                            <p class="medicine-desc">An angiotensin II receptor blocker (ARB) used to treat high blood pressure and to protect kidneys from damage due to diabetes.</p>
+                            <div class="medicine-effects">
+                                <div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+                                <ul class="effects-list">
+                                    <li><i class="fas fa-circle common"></i> Dizziness</li>
+                                    <li><i class="fas fa-circle common"></i> Stuffy nose</li>
+                                    <li><i class="fas fa-circle common"></i> Back pain</li>
+                                    <li><i class="fas fa-circle serious"></i> High potassium levels</li>
+                                    <li><i class="fas fa-circle serious"></i> Kidney problems</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medicine Card 6 -->
+                    <div class="medicine-card" data-letter="S">
+                        <div class="medicine-header">
+                            <h3 class="medicine-name">Simvastatin</h3>
+                            <div class="medicine-generic">Simvastatin</div>
+                        </div>
+                        <div class="medicine-content">
+                            <p class="medicine-desc">A statin medication used to control elevated cholesterol, or hypercholesterolemia, and to prevent cardiovascular disease.</p>
+                            <div class="medicine-effects">
+                                <div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+                                <ul class="effects-list">
+                                    <li><i class="fas fa-circle common"></i> Headache</li>
+                                    <li><i class="fas fa-circle common"></i> Nausea, stomach pain</li>
+                                    <li><i class="fas fa-circle common"></i> Constipation</li>
+                                    <li><i class="fas fa-circle serious"></i> Muscle pain or weakness</li>
+                                    <li><i class="fas fa-circle serious"></i> Liver problems</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Insert these new medicine cards inside the existing <div class="medicine-list">, after the current cards -->
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Acetaminophen (Paracetamol)</h3>
+		<div class="medicine-generic">Paracetamol</div>
+		<div class="medicine-type">Analgesic — Paracetamol</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Analgesic and antipyretic commonly used for pain and fever.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Rash (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Liver toxicity with overdose</li>
+				<li><i class="fas fa-circle serious"></i> Severe allergic reaction (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Adderall</h3>
+		<div class="medicine-generic">Amphetamine / Dextroamphetamine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Central nervous system stimulant for ADHD and narcolepsy.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Insomnia, decreased appetite</li>
+				<li><i class="fas fa-circle common"></i> Nervousness</li>
+				<li><i class="fas fa-circle serious"></i> Cardiovascular events</li>
+				<li><i class="fas fa-circle serious"></i> Dependency/abuse</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Amitriptyline</h3>
+		<div class="medicine-generic">Amitriptyline hydrochloride</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Tricyclic antidepressant used for depression, neuropathic pain, and migraine prophylaxis.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dry mouth, drowsiness</li>
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle serious"></i> Cardiac conduction abnormalities</li>
+				<li><i class="fas fa-circle serious"></i> Anticholinergic effects in elderly</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Amlodipine</h3>
+		<div class="medicine-generic">Amlodipine besylate</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Calcium channel blocker used for hypertension and angina.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Peripheral edema</li>
+				<li><i class="fas fa-circle common"></i> Flushing</li>
+				<li><i class="fas fa-circle serious"></i> Hypotension</li>
+				<li><i class="fas fa-circle serious"></i> Reflex tachycardia (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Amoxicillin (PH entry)</h3>
+		<div class="medicine-generic">Amoxicillin trihydrate</div>
+		<div class="medicine-type">Antibiotic</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Penicillin antibiotic for various bacterial infections.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle common"></i> Rash</li>
+				<li><i class="fas fa-circle serious"></i> Anaphylaxis in allergic patients</li>
+				<li><i class="fas fa-circle serious"></i> Clostridioides difficile infection</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Ativan</h3>
+		<div class="medicine-generic">Lorazepam</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Benzodiazepine used for anxiety, insomnia, and status epilepticus adjunct.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Sedation</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression (with opioids)</li>
+				<li><i class="fas fa-circle serious"></i> Dependence/withdrawal</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Atorvastatin</h3>
+		<div class="medicine-generic">Atorvastatin calcium</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Statin for lowering LDL cholesterol and cardiovascular risk reduction.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Myalgia</li>
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle serious"></i> Rhabdomyolysis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Elevated liver enzymes</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="A">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Azithromycin</h3>
+		<div class="medicine-generic">Azithromycin</div>
+		<div class="medicine-type">Antibiotic</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Macrolide antibiotic used for respiratory, skin, and some sexually transmitted infections.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle common"></i> Taste disturbance</li>
+				<li><i class="fas fa-circle serious"></i> QT prolongation</li>
+				<li><i class="fas fa-circle serious"></i> Hepatotoxicity (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="medicine-card" data-letter="B">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Benzonatate</h3>
+		<div class="medicine-generic">Benzonatate</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Antitussive used to relieve cough by numbing respiratory stretch receptors.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> CNS depression with overdose</li>
+				<li><i class="fas fa-circle serious"></i> Allergic reaction (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="B">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Biktarvy</h3>
+		<div class="medicine-generic">Bictegravir / Emtricitabine / Tenofovir alafenamide</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Single-tablet regimen for HIV-1 treatment.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Hepatic dysfunction</li>
+				<li><i class="fas fa-circle serious"></i> Renal effects (monitoring required)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+            <div class="medicine-card" data-letter="B">
+                <div class="medicine-header">
+                    <h3 class="medicine-name">Bioflu</h3>
+                    <div class="medicine-generic">Paracetamol, Phenylephrine, Chlorphenamine</div>
+                    <div class="medicine-type">Contains Paracetamol</div>
+                </div>
+                <div class="medicine-content">
+                    <p class="medicine-desc">A popular over-the-counter medication in the Philippines for relief of cold and flu symptoms including fever, headache, nasal congestion, and runny nose.</p>
+                    <div class="medicine-effects">
+                        <div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+                        <ul class="effects-list">
+                            <li><i class="fas fa-circle common"></i> Drowsiness</li>
+                            <li><i class="fas fa-circle common"></i> Dry mouth</li>
+                            <li><i class="fas fa-circle common"></i> Dizziness</li>
+                            <li><i class="fas fa-circle serious"></i> Allergic reactions</li>
+                            <li><i class="fas fa-circle serious"></i> Difficulty urinating</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+<div class="medicine-card" data-letter="B">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Botox</h3>
+		<div class="medicine-generic">OnabotulinumtoxinA</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Botulinum toxin used for cosmetic and therapeutic indications (e.g., spasticity, chronic migraine).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Local injection site pain</li>
+				<li><i class="fas fa-circle common"></i> Weakness near injection site</li>
+				<li><i class="fas fa-circle serious"></i> Dysphagia (if injected near neck)</li>
+				<li><i class="fas fa-circle serious"></i> Spread of toxin effects (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="B">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Brilinta</h3>
+		<div class="medicine-generic">Ticagrelor</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Antiplatelet agent used to reduce thrombotic events in ACS.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dyspnea</li>
+				<li><i class="fas fa-circle common"></i> Bleeding</li>
+				<li><i class="fas fa-circle serious"></i> Major hemorrhage</li>
+				<li><i class="fas fa-circle serious"></i> Bradyarrhythmia (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="B">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Buprenorphine</h3>
+		<div class="medicine-generic">Buprenorphine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Partial opioid agonist used for pain management and opioid use disorder.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression when combined with other depressants</li>
+				<li><i class="fas fa-circle serious"></i> Withdrawal on abrupt cessation</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Cephalexin</h3>
+		<div class="medicine-generic">Cephalexin monohydrate</div>
+		<div class="medicine-type">Antibiotic</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">First-generation cephalosporin for skin, soft tissue, and respiratory infections.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle common"></i> Rash</li>
+				<li><i class="fas fa-circle serious"></i> Hypersensitivity reactions</li>
+				<li><i class="fas fa-circle serious"></i> C. difficile colitis</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Ciprofloxacin</h3>
+		<div class="medicine-generic">Ciprofloxacin</div>
+		<div class="medicine-type">Antibiotic</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Fluoroquinolone antibiotic for various infections; use per local guidance due to safety profile.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Tendonitis/tendon rupture</li>
+				<li><i class="fas fa-circle serious"></i> QT prolongation</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Citalopram</h3>
+		<div class="medicine-generic">Citalopram hydrobromide</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">SSRI antidepressant for depression and anxiety disorders.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Insomnia or somnolence</li>
+				<li><i class="fas fa-circle serious"></i> QT prolongation at higher doses</li>
+				<li><i class="fas fa-circle serious"></i> Serotonin syndrome (with interactions)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Clindamycin</h3>
+		<div class="medicine-generic">Clindamycin phosphate</div>
+		<div class="medicine-type">Antibiotic</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Lincosamide antibiotic used for anaerobic infections and some skin infections.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle common"></i> Rash</li>
+				<li><i class="fas fa-circle serious"></i> Pseudomembranous colitis (C. difficile)</li>
+				<li><i class="fas fa-circle serious"></i> Severe hypersensitivity</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Clonazepam</h3>
+		<div class="medicine-generic">Clonazepam</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Benzodiazepine for seizure disorders, panic disorder, and anxiety.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Sedation</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression (with other depressants)</li>
+				<li><i class="fas fa-circle serious"></i> Dependence/withdrawal</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Cyclobenzaprine</h3>
+		<div class="medicine-generic">Cyclobenzaprine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Muscle relaxant used for short-term relief of muscle spasm.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle common"></i> Dry mouth</li>
+				<li><i class="fas fa-circle serious"></i> Cardiac conduction disturbances</li>
+				<li><i class="fas fa-circle serious"></i> Serotonin syndrome (with interactions)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="C">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Cymbalta</h3>
+		<div class="medicine-generic">Duloxetine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">SNRI used for depression, anxiety, neuropathic pain, and fibromyalgia.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle serious"></i> Serotonin syndrome</li>
+				<li><i class="fas fa-circle serious"></i> Hypertension (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="D">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Doxycycline</h3>
+			<div class="medicine-generic">Doxycycline</div>
+			<div class="medicine-type">Antibiotic</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Tetracycline antibiotic used for respiratory, skin, and some atypical infections.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Photosensitivity</li>
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle serious"></i> Esophageal irritation (take with water)</li>
+				<li><i class="fas fa-circle serious"></i> Tooth discoloration in children</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="D">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Dupixent</h3>
+		<div class="medicine-generic">Dupilumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Monoclonal antibody for atopic dermatitis, asthma, and other type 2 inflammatory conditions.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Injection site reactions</li>
+				<li><i class="fas fa-circle common"></i> Conjunctivitis</li>
+				<li><i class="fas fa-circle serious"></i> Hypersensitivity</li>
+				<li><i class="fas fa-circle serious"></i> Eosinophilic conditions (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="E">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Entresto</h3>
+		<div class="medicine-generic">Sacubitril / Valsartan</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">ARNI for heart failure with reduced ejection fraction to reduce morbidity and mortality.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Hypotension</li>
+				<li><i class="fas fa-circle common"></i> Hyperkalemia</li>
+				<li><i class="fas fa-circle serious"></i> Angioedema</li>
+				<li><i class="fas fa-circle serious"></i> Renal impairment</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="E">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Entyvio</h3>
+		<div class="medicine-generic">Vedolizumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Monoclonal antibody for ulcerative colitis and Crohn's disease.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Infusion reactions</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Serious infections</li>
+				<li><i class="fas fa-circle serious"></i> Progressive multifocal leukoencephalopathy (very rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="F">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Farxiga</h3>
+		<div class="medicine-generic">Dapagliflozin</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">SGLT2 inhibitor for type 2 diabetes and heart/kidney benefits.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Genital mycotic infections</li>
+				<li><i class="fas fa-circle common"></i> Polyuria</li>
+				<li><i class="fas fa-circle serious"></i> Euglycemic diabetic ketoacidosis</li>
+				<li><i class="fas fa-circle serious"></i> Volume depletion</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="F">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Fentanyl Patch</h3>
+		<div class="medicine-generic">Fentanyl transdermal system</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Long-acting opioid patch for chronic severe pain in opioid-tolerant patients.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression</li>
+				<li><i class="fas fa-circle serious"></i> Overdose risk if misused</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="G">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Gabapentin</h3>
+		<div class="medicine-generic">Gabapentin</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Anticonvulsant used for neuropathic pain and seizures.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle common"></i> Somnolence</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression with other depressants</li>
+				<li><i class="fas fa-circle serious"></i> Mood/behavioral changes</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="G">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Gemtesa</h3>
+		<div class="medicine-generic">Vibegron</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Beta-3 adrenergic agonist for overactive bladder.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle serious"></i> Hypertension</li>
+				<li><i class="fas fa-circle serious"></i> Urinary retention</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="H">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Humira</h3>
+		<div class="medicine-generic">Adalimumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">TNF inhibitor for autoimmune diseases (e.g., RA, Crohn's, psoriasis).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Injection site reactions</li>
+				<li><i class="fas fa-circle common"></i> Upper respiratory infections</li>
+				<li><i class="fas fa-circle serious"></i> Serious infections (TB, opportunistic)</li>
+				<li><i class="fas fa-circle serious"></i> Malignancy risk (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="H">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Hydrochlorothiazide</h3>
+		<div class="medicine-generic">Hydrochlorothiazide</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Thiazide diuretic commonly used for hypertension and edema.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Hypokalemia</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Electrolyte disturbances</li>
+				<li><i class="fas fa-circle serious"></i> Hyperuricemia/gout</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="I">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Ibuprofen</h3>
+		<div class="medicine-generic">Ibuprofen</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">NSAID for pain, inflammation, and fever.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> GI bleeding</li>
+				<li><i class="fas fa-circle serious"></i> Renal impairment</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="I">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Imbruvica</h3>
+		<div class="medicine-generic">Ibrutinib</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">BTK inhibitor used for certain B-cell malignancies.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle common"></i> Fatigue</li>
+				<li><i class="fas fa-circle serious"></i> Bleeding events</li>
+				<li><i class="fas fa-circle serious"></i> Infections</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="J">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Januvia</h3>
+		<div class="medicine-generic">Sitagliptin</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">DPP-4 inhibitor for type 2 diabetes to improve glycemic control.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nasopharyngitis</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Pancreatitis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Hypersensitivity reactions</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="J">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Jardiance</h3>
+		<div class="medicine-generic">Empagliflozin</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">SGLT2 inhibitor for type 2 diabetes with cardiovascular benefits.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Genital infections</li>
+				<li><i class="fas fa-circle common"></i> Increased urination</li>
+				<li><i class="fas fa-circle serious"></i> DKA (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Volume depletion</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="K">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Keytruda</h3>
+		<div class="medicine-generic">Pembrolizumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">PD-1 inhibitor used in various cancers as immunotherapy.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Fatigue</li>
+				<li><i class="fas fa-circle common"></i> Rash</li>
+				<li><i class="fas fa-circle serious"></i> Immune-mediated adverse reactions (colitis, pneumonitis)</li>
+				<li><i class="fas fa-circle serious"></i> Endocrinopathies</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="L">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Lexapro</h3>
+		<div class="medicine-generic">Escitalopram</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">SSRI antidepressant used for depression and anxiety disorders.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Insomnia</li>
+				<li><i class="fas fa-circle serious"></i> QT prolongation at high doses</li>
+				<li><i class="fas fa-circle serious"></i> Serotonin syndrome</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="L">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Lisinopril</h3>
+		<div class="medicine-generic">Lisinopril</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">ACE inhibitor for hypertension and heart failure.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Cough</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Hyperkalemia</li>
+				<li><i class="fas fa-circle serious"></i> Angioedema</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="L">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Lofexidine</h3>
+		<div class="medicine-generic">Lofexidine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Alpha-2 adrenergic agonist used to mitigate opioid withdrawal symptoms.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dry mouth</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Hypotension</li>
+				<li><i class="fas fa-circle serious"></i> Bradycardia</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="L">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Loratadine</h3>
+		<div class="medicine-generic">Loratadine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Second-generation antihistamine for allergic rhinitis and urticaria.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle common"></i> Dry mouth</li>
+				<li><i class="fas fa-circle serious"></i> Rare hypersensitivity</li>
+				<li><i class="fas fa-circle serious"></i> Tachycardia (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="L">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Loratadine for Dogs</h3>
+		<div class="medicine-generic">Loratadine (veterinary use)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Veterinary-use antihistamine; dose and use should follow veterinary guidance.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Sedation (dogs)</li>
+				<li><i class="fas fa-circle common"></i> Dry mouth</li>
+				<li><i class="fas fa-circle serious"></i> Ataxia (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Allergic reaction (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="L">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Lyrica</h3>
+		<div class="medicine-generic">Pregabalin</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Anticonvulsant and neuropathic pain agent.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle common"></i> Somnolence</li>
+				<li><i class="fas fa-circle serious"></i> Weight gain</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression with other depressants</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Melatonin</h3>
+		<div class="medicine-generic">Melatonin</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Over-the-counter supplement used to help regulate sleep-wake cycles.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle common"></i> Vivid dreams</li>
+				<li><i class="fas fa-circle serious"></i> Hormonal effects (long-term unknown)</li>
+				<li><i class="fas fa-circle serious"></i> Interaction with anticoagulants</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Meloxicam</h3>
+		<div class="medicine-generic">Meloxicam</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">NSAID used for osteoarthritis and rheumatoid arthritis.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> GI bleeding</li>
+				<li><i class="fas fa-circle serious"></i> Renal impairment</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Metformin </h3>
+		<div class="medicine-generic">Metformin hydrochloride</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">First-line agent for type 2 diabetes; decreases hepatic glucose production.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle common"></i> Metallic taste</li>
+				<li><i class="fas fa-circle serious"></i> Lactic acidosis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Vitamin B12 deficiency (long term)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Methadone</h3>
+		<div class="medicine-generic">Methadone</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Long-acting opioid used for pain and opioid use disorder maintenance therapy.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle common"></i> Sedation</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression</li>
+				<li><i class="fas fa-circle serious"></i> QT prolongation</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Methotrexate</h3>
+		<div class="medicine-generic">Methotrexate</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Antimetabolite used in oncology and as an immunosuppressant for autoimmune diseases.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Stomatitis</li>
+				<li><i class="fas fa-circle serious"></i> Hepatotoxicity</li>
+				<li><i class="fas fa-circle serious"></i> Bone marrow suppression</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Metoprolol</h3>
+		<div class="medicine-generic">Metoprolol tartrate / succinate</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Beta-blocker for hypertension, angina, and heart failure (specific formulation dependent).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Fatigue</li>
+				<li><i class="fas fa-circle common"></i> Bradycardia</li>
+				<li><i class="fas fa-circle serious"></i> Heart block</li>
+				<li><i class="fas fa-circle serious"></i> Worsening heart failure (if misused)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="M">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Mounjaro</h3>
+		<div class="medicine-generic">Tirzepatide</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Dual GIP/GLP-1 receptor agonist for type 2 diabetes and weight management.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle serious"></i> Pancreatitis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Hypoglycemia with insulin/sulfonylureas</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="N">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Naltrexone</h3>
+		<div class="medicine-generic">Naltrexone</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Opioid antagonist used for opioid/alcohol dependence and in some weight-loss protocols (with bupropion).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Hepatotoxicity at high doses</li>
+				<li><i class="fas fa-circle serious"></i> Precipitated withdrawal in opioid-dependent patients</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="N">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Naproxen</h3>
+		<div class="medicine-generic">Naproxen</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">NSAID used for pain, inflammation, and dysmenorrhea.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+								<li><i class="fas fa-circle serious"></i> GI bleeding</li>
+				<li><i class="fas fa-circle serious"></i> Cardiovascular risk with long-term use</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="N">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Narcan</h3>
+		<div class="medicine-generic">Naloxone</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Opioid antagonist used to reverse opioid overdose (nasal/injectable formulations).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Tachycardia</li>
+				<li><i class="fas fa-circle common"></i> Sweating</li>
+				<li><i class="fas fa-circle serious"></i> Acute withdrawal symptoms in dependent patients</li>
+				<li><i class="fas fa-circle serious"></i> Rare hypersensitivity</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="N">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Nurtec</h3>
+		<div class="medicine-generic">Rimegepant</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Oral CGRP receptor antagonist for acute migraine and preventive use (depending on formulation).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Fatigue</li>
+				<li><i class="fas fa-circle serious"></i> Hypersensitivity</li>
+				<li><i class="fas fa-circle serious"></i> Interaction with CYP3A4 inhibitors</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="O">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Omeprazole</h3>
+		<div class="medicine-generic">Omeprazole</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Proton pump inhibitor for reflux, peptic ulcer disease, and H. pylori regimens.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle common"></i> GI upset</li>
+				<li><i class="fas fa-circle serious"></i> Clostridioides difficile infection (risk with long-term use)</li>
+				<li><i class="fas fa-circle serious"></i> Hypomagnesemia (long-term)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="O">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Opdivo</h3>
+		<div class="medicine-generic">Nivolumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">PD-1 inhibitor used in oncology for several tumor types.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Fatigue</li>
+				<li><i class="fas fa-circle common"></i> Rash</li>
+				<li><i class="fas fa-circle serious"></i> Immune-mediated adverse events</li>
+				<li><i class="fas fa-circle serious"></i> Endocrinopathies</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="O">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Otezla</h3>
+		<div class="medicine-generic">Apremilast</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">PDE4 inhibitor for psoriasis and psoriatic arthritis.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle common"></i> Weight loss</li>
+				<li><i class="fas fa-circle serious"></i> Depression/suicidal ideation (monitor)</li>
+				<li><i class="fas fa-circle serious"></i> Rare hypersensitivity</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="O">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Ozempic</h3>
+		<div class="medicine-generic">Semaglutide (injectable)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">GLP-1 receptor agonist for type 2 diabetes; also used off-label/approved for weight management (brand-specific).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Vomiting</li>
+				<li><i class="fas fa-circle serious"></i> Pancreatitis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Thyroid C-cell tumors (animal data)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="P">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Pantoprazole</h3>
+		<div class="medicine-generic">Pantoprazole</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Proton pump inhibitor for GERD and acid-related disorders.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle common"></i> Abdominal pain</li>
+				<li><i class="fas fa-circle serious"></i> Hypomagnesemia (long-term)</li>
+				<li><i class="fas fa-circle serious"></i> C. difficile risk (long-term)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="P">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Plan B</h3>
+		<div class="medicine-generic">Levonorgestrel (emergency contraception)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Emergency contraceptive to reduce risk of pregnancy after unprotected intercourse if taken promptly.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Irregular bleeding</li>
+				<li><i class="fas fa-circle serious"></i> Severe abdominal pain (seek care)</li>
+				<li><i class="fas fa-circle serious"></i> Allergic reaction (rare)</li>
+									</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="P">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Prednisone</h3>
+				<div class="medicine-generic">Prednisone</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Systemic corticosteroid for inflammatory and autoimmune conditions.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Weight gain</li>
+				<li><i class="fas fa-circle common"></i> Insomnia</li>
+				<li><i class="fas fa-circle serious"></i> Immunosuppression/infection risk</li>
+				<li><i class="fas fa-circle serious"></i> Adrenal suppression with long-term use</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="P">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Probuphine</h3>
+		<div class="medicine-generic">Buprenorphine implant</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Subdermal buprenorphine implant for opioid dependence providing sustained release.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Implant site reactions</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression (with other depressants)</li>
+				<li><i class="fas fa-circle serious"></i> Infection at implant site</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="Q">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Qulipta</h3>
+		<div class="medicine-generic">Atogepant</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Oral CGRP receptor antagonist for migraine prevention.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Fatigue</li>
+				<li><i class="fas fa-circle serious"></i> Hypersensitivity (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Liver enzyme elevations (monitor)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="Q">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Quviviq</h3>
+		<div class="medicine-generic">Daridorexant</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Dual orexin receptor antagonist for insomnia.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Drowsiness</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Complex sleep behaviors (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Daytime impairment</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="R">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Rybelsus</h3>
+		<div class="medicine-generic">Semaglutide (oral)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Oral GLP-1 receptor agonist for type 2 diabetes.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle serious"></i> Pancreatitis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Thyroid C-cell tumor risk (animal)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="S">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Sublocade</h3>
+		<div class="medicine-generic">Buprenorphine extended-release injection (subcutaneous)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Monthly extended-release buprenorphine injection for opioid use disorder.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Injection site reactions</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression</li>
+				<li><i class="fas fa-circle serious"></i> Precipitated withdrawal if opioids present</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="S">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Sunlenca</h3>
+		<div class="medicine-generic">Lenacapavir</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Novel HIV capsid inhibitor indicated for heavily treatment-experienced adults (brand-specific).</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Injection/infusion site reactions</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Serious infections</li>
+				<li><i class="fas fa-circle serious"></i> Hypersensitivity (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="T">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Tepezza</h3>
+		<div class="medicine-generic">Teprotumumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Monoclonal antibody for thyroid eye disease.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Muscle spasms</li>
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle serious"></i> Hyperglycemia</li>
+				<li><i class="fas fa-circle serious"></i> Hearing impairment (reported)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="T">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Tramadol</h3>
+		<div class="medicine-generic">Tramadol</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Opioid analgesic for moderate to moderately severe pain.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle serious"></i> Seizure risk (at high doses/interaction)</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression (with other depressants)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="T">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Trazodone</h3>
+		<div class="medicine-generic">Trazodone hydrochloride</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Antidepressant often used off-label for insomnia at lower doses.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Sedation</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Priapism (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Orthostatic hypotension</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="V">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Viagra</h3>
+		<div class="medicine-generic">Sildenafil</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">PDE5 inhibitor for erectile dysfunction.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Flushing</li>
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle serious"></i> Severe hypotension with nitrates</li>
+				<li><i class="fas fa-circle serious"></i> Vision disturbances (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="V">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Vraylar</h3>
+		<div class="medicine-generic">Cariprazine</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Atypical antipsychotic used for schizophrenia and bipolar disorder.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Akathisia</li>
+				<li><i class="fas fa-circle common"></i> Insomnia</li>
+				<li><i class="fas fa-circle serious"></i> Extrapyramidal symptoms</li>
+				<li><i class="fas fa-circle serious"></i> Metabolic changes</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="W">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Wegovy</h3>
+		<div class="medicine-generic">Semaglutide (chronic weight management)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">GLP-1 receptor agonist approved for chronic weight management in adults with obesity.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Constipation</li>
+				<li><i class="fas fa-circle serious"></i> Pancreatitis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Thyroid C-cell tumor risk (animal)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="W">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Wellbutrin</h3>
+		<div class="medicine-generic">Bupropion</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Antidepressant and smoking cessation aid (as Zyban); lowers seizure threshold at higher doses.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Dry mouth</li>
+				<li><i class="fas fa-circle common"></i> Insomnia</li>
+				<li><i class="fas fa-circle serious"></i> Seizures (dose-related)</li>
+				<li><i class="fas fa-circle serious"></i> Hypertension (rare)</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="X">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Xanax</h3>
+		<div class="medicine-generic">Alprazolam</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Benzodiazepine for anxiety and panic disorders.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Sedation</li>
+				<li><i class="fas fa-circle common"></i> Dizziness</li>
+				<li><i class="fas fa-circle serious"></i> Dependence/withdrawal</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression with other depressants</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="Y">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Yervoy</h3>
+		<div class="medicine-generic">Ipilimumab</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">CTLA-4 inhibitor used in oncology; often combined with PD-1 inhibitors.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Rash</li>
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle serious"></i> Severe immune-mediated adverse events</li>
+				<li><i class="fas fa-circle serious"></i> Endocrinopathies</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="Z">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Zepbound</h3>
+		<div class="medicine-generic">Tirzepatide (brand-specific)</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">GLP-1/GIP receptor agonist indicated for metabolic disease/weight management in certain regions.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle common"></i> Diarrhea</li>
+				<li><i class="fas fa-circle serious"></i> Pancreatitis (rare)</li>
+				<li><i class="fas fa-circle serious"></i> Hypoglycemia with insulin/sulfonylureas</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="medicine-card" data-letter="Z">
+	<div class="medicine-header">
+		<h3 class="medicine-name">Zubsolv</h3>
+		<div class="medicine-generic">Buprenorphine / Naloxone sublingual tablets</div>
+	</div>
+	<div class="medicine-content">
+		<p class="medicine-desc">Sublingual formulation for opioid use disorder combining buprenorphine and naloxone.</p>
+		<div class="medicine-effects">
+			<div class="effects-title"><i class="fas fa-exclamation-triangle"></i> Side Effects</div>
+			<ul class="effects-list">
+				<li><i class="fas fa-circle common"></i> Headache</li>
+				<li><i class="fas fa-circle common"></i> Nausea</li>
+				<li><i class="fas fa-circle serious"></i> Respiratory depression</li>
+				<li><i class="fas fa-circle serious"></i> Precipitated withdrawal if misused</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- End inserted cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="drugdb.html"><i class="fas fa-pills"></i> Drug Database</a></li>
+                        <li><a href="diseasedb.html"><i class="fas fa-stethoscope"></i> Disease Database</a></li>
+                        <li><a href="drugdb.html#interactions"><i class="fas fa-exchange-alt"></i> Drug Interactions</a></li>
+                        <li><a href="clinical-tools.html"><i class="fas fa-calculator"></i> Clinical Calculators</a></li>
+                        <li><a href="medical-news.html"><i class="fas fa-newspaper"></i> Medical News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>About MIMS</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Editorial Policy</a></li>
+                        <li><a href="#"><i class="fas fa-bullhorn"></i> Advertise With Us</a></li>
+                        <li><a href="contact.html" target="_blank"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                        <li><a href="terms.html" target="_blank"><i class="fas fa-file-contract"></i> Terms of Use</a></li>
+                        <li><a href="cookie-policy.html" target="_blank"><i class="fas fa-cookie-bite"></i> Cookie Policy</a></li>
+                        <li><a href="disclaimer.html" target="_blank"><i class="fas fa-exclamation-triangle"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Newsletter</a></li>
+                        <li><a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Deocampo.aragabriel5/" target="_blank" rel="noopener noreferrer" aria-label="MIMS ph Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 MIMS ph. All rights reserved. This information is intended for healthcare professionals only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals for Legal Info -->
+    <div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(30,41,59,0.7);z-index:9999;">
+        <div id="modal-content" style="background:white;max-width:600px;margin:60px auto;padding:40px 30px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.18);position:relative;">
+            <button id="modal-close" style="position:absolute;top:18px;right:18px;background:none;border:none;font-size:1.5rem;color:var(--gray);cursor:pointer;"><i class="fas fa-times"></i></button>
+            <h2 id="modal-title" style="margin-bottom:18px;"></h2>
+            <div id="modal-body" style="color:var(--gray);font-size:1rem;line-height:1.7;"></div>
+        </div>
+    </div>
+    <script src="main.js" defer></script>
+</body>
+</html>
